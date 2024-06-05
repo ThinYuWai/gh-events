@@ -2,6 +2,7 @@ import HelpBox from './HelpBox';
 import './HelpArea.css';
 
 // added comment for skip ci
+// added comment
 const HELP_ITEMS = [
   {
     id: 'h1',
