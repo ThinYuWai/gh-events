@@ -1,6 +1,7 @@
 import HelpBox from './HelpBox';
 import './HelpArea.css';
 
+// added comment for skip ci
 const HELP_ITEMS = [
   {
     id: 'h1',
