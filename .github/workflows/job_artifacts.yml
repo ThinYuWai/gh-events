@@ -31,6 +31,7 @@ jobs:
         id: asset
         run: find dist/assets/*.js -type f -execdir echo 'js-file={}' >> $GITHUB_OUTPUT ';'
         # run: find dist/assets/*.js -type f -execdir echo '::set-output name=js-file::{}' ';' # not supported by github actions
+      - name: Upload Artifacts
         uses: actions/upload-artifact@v4
         with:
           name: dist-files
