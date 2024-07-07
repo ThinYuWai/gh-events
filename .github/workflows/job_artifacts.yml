@@ -9,6 +9,11 @@ jobs:
     steps:
       - name: Get code
         uses: actions/checkout@v4
+      - name: Cache dependencies
+        uses: actions/cache@v4
+        with:
+          path: ~/.npm
+          key: demo-node-modules--${{ hashFiles('**/package-lock.json') }}
       - name: Install dependencies
         run: npm ci
       - name: Lint code
@@ -18,11 +23,16 @@ jobs:
   build:
     needs: test
     runs-on: ubuntu-latest
-    outputs: 
+    outputs:
       script-file: ${{ steps.asset.outputs.js-file }}
     steps:
       - name: Get code
         uses: actions/checkout@v4
+      - name: Cache dependencies
+        uses: actions/cache@v4
+        with:
+          path: ~/.npm
+          key: demo-node-modules--${{ hashFiles('**/package-lock.json') }}
       - name: Install dependencies
         run: npm ci
       - name: Build website
@@ -49,7 +59,7 @@ jobs:
           name: dist-files
       - name: Output
         run: ls
-      - name: Output filename 
+      - name: Output filename
         run: echo "${{ needs.build.outputs.script-file }}"
       - name: Deploy
         run: echo "Deploying..."
